@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<script src="js/socket.io.js"></script>
+		<script src="js/jquery.1.10.2.js"></script>
+	</head>
+<body>
+	<button id="start" onclick="send()">Start</button>
+	<button id="stop" onclick="stop()">stop</button>
+
+	<script>
+	var socket,interval;
+			var address;
+			if(location.origin.indexOf("localhost") != -1)
+				address == "http://localhost:5000";
+			else
+				address = location.origin.replace(/^http/, 'ws');
+			socket = io.connect(address);
+
+			var y= 0.5;
+			var ll = 0.1;
+			var ul = 0.9;
+			var down = true;
+			var rate = 1/60 * 1000;
+			var step = 1/30;
+
+			socket.on("start",send)
+			socket.on("stop",stop);
+			socket.on("handshake-start",function(){
+				console.log("Handshake start");
+				socket.emit("message","setName:lollo");
+				socket.emit("message","arduino-handshake-stop");
+			});
+			
+			socket.on("heartbeat",function(){
+				console.log("heart");
+				socket.emit("message","heartbeat");
+			});
+
+
+		function send(){
+			interval = setInterval(function(){
+				down ? y-= step : y+= step;
+				if(y <= ll) 
+					down = false;
+				if(y >= ul) 
+					down = true;
+
+				socket.emit("move",{"y":y});
+				console.log(y);
+			},rate);
+		}
+
+		function stop(){
+			clearInterval(interval);
+		}
+
+		function disconnect(){
+			socket.emit("disconnect");
+		}
+		
+
+
+	</script>
+
+</body>
+</html>

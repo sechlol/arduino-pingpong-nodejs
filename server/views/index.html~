@@ -1,0 +1,23 @@
+<html>
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/jquery.1.10.2.js"></script>
+	<script src="indexcontrol.js"></script>
+</head>
+<body>
+	<header>ArduinoPong</header>
+	<div class="list" id="device-list">
+		<header>Device List</header>
+		<ul></ul>
+		<button>Connect</button>		
+
+	</div>
+	 
+	<div class="list" id="game-list">
+		<header>Game List</header>
+		<ul></ul>
+		<button>Watch</button>			
+	</div>
+	
+</body>
+</html>

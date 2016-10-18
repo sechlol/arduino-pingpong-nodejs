@@ -1,0 +1,42 @@
+<html>
+<head>
+	<script src="js/socket.io.js"></script>
+	<script src="js/jquery.1.10.2.js"></script>
+	<script src="js/drawer.js"></script>
+	<script src="js/socketmanager.js"></script>
+	<script src="js/indexcontrol.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/pages.css">
+	<link rel="stylesheet" type="text/css" href="css/field.css">
+</head>
+
+<body>	
+	<div class="page" id="rooms">
+		<header>
+			<h1>ArduinoPong</h1>
+			<div id="message-board"></div>
+		</header>
+		
+		<div class="list" id="device-list">
+			<header><h2>Device List</h2></header>
+			<select multiple></select>
+			<button>Connect</button>		
+
+		</div>
+		 
+		<div class="list" id="game-list">
+			<header><h2>Game List</h2></header>
+			<select multiple></select>
+			<button>Watch</button>			
+		</div>
+	</div>
+	<div class="page" id="game" style="display:none">
+		<div id="scores">
+			<span id="p1"></span>
+			<span id="p2"></span>
+		</div>
+		<canvas id="field" width="300" height = "300"></canvas></br>
+		<!-- <div id="field"></div> -->
+		<button></button>
+	</div>
+</body>
+</html>
